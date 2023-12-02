@@ -12,7 +12,7 @@ export default class AdonisMaintenanceProvider
         this.app.container.singleton('Adonis/Addons/MaintenanceMode', () => {
             const { CheckForMaintenanceMode } = require('../src/Middleware/CheckForMaintenanceMode')
 
-            return new CheckForMaintenanceMode();
+            return new CheckForMaintenanceMode(this.app.tmpPath('maintenance.json'));
         });
     }
 }
