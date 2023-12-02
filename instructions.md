@@ -2,5 +2,5 @@ The package `adonisjs-maintenance` has been successfully configured. Before you 
 ```ts
 Server.middleware.register([
   //...
-  () => import('@ioc:adonisjs-maintenance/CheckForMaintenanceMode')
+  () => import('@ioc:Adonis/Addons/MaintenanceMode')
 ])

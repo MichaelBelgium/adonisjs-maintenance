@@ -52,8 +52,10 @@
     ],
     "runGhActionsOnWindows": false
   },
+  "types": "build/adonis-typings/index.d.ts",
   "files": [
     "build/instructions.md",
+    "build/adonis-typings",
     "build/src",
     "build/providers"
   ],
@@ -65,5 +67,6 @@
     "commands": [
       "adonisjs-maintenance/build/src/commands/MaintenanceMode"
     ],
+    "types": "adonisjs-maintenance"
   }
 }
