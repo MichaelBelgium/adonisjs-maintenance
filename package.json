@@ -48,9 +48,7 @@
   "mrmConfig": {
     "core": false,
     "license": "MIT",
-    "services": [
-      "github-actions"
-    ],
+    "services": [],
     "minNodeVersion": "20.9.0",
     "probotApps": [
       "stale"
