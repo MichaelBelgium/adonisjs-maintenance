@@ -2,13 +2,12 @@
   "name": "adonisjs-maintenance",
   "version": "1.0.0",
   "description": "A maintenance mode for the AdonisJS framework",
-  "main": "build/providers/HoneypotProvider.js",
+  "main": "build/providers/AdonisMaintenanceProvider.js",
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
-    "pretest": "npm run lint",
     "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
     "clean": "del-cli build",
-    "compile": "npm run lint && npm run clean && tsc",
+    "compile": "npm run clean && tsc",
     "build": "npm run compile",
     "prepublishOnly": "npm run build"
   },
@@ -17,7 +16,10 @@
     "url": "git+https://github.com/MichaelBelgium/adonisjs-maintenance.git"
   },
   "keywords": [
-    "adonisjs"
+    "adonisjs",
+    "maintenance",
+    "maintenance mode",
+    "typescript"
   ],
   "author": "michaelbelgium.me,Michael V",
   "license": "MIT",
@@ -39,7 +41,7 @@
     "services": [
       "github-actions"
     ],
-    "minNodeVersion": "latest",
+    "minNodeVersion": "20.9.0",
     "probotApps": [
       "stale"
     ],
@@ -47,7 +49,11 @@
   },
   "files": [
     "build/src",
-    "build/index.d.ts",
-    "build/index.js"
-  ]
+    "build/providers"
+  ],
+  "adonisjs": {
+    "providers": [
+      "adonisjs-maintenance"
+    ],
+  }
 }
