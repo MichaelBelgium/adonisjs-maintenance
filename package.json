@@ -7,7 +7,7 @@
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
     "clean": "del-cli build",
-    "compile": "npm run clean && tsc",
+    "compile": "npm run clean && tsc && copyfiles instructions.md build",
     "build": "npm run compile",
     "prepublishOnly": "npm run build"
   },
@@ -32,6 +32,7 @@
     "@adonisjs/mrm-preset": "^5.0.3",
     "@adonisjs/require-ts": "^2.0.13",
     "@types/node": "^20.10.1",
+    "copyfiles": "^2.4.1",
     "del-cli": "^5.1.0",
     "mrm": "^4.1.22",
     "typescript": "^5.3.2"
@@ -52,10 +53,12 @@
     "runGhActionsOnWindows": false
   },
   "files": [
+    "build/instructions.md",
     "build/src",
     "build/providers"
   ],
   "adonisjs": {
+    "instructionsMd": "build/instructions.md",
     "providers": [
       "adonisjs-maintenance"
     ],
