@@ -59,5 +59,8 @@
     "providers": [
       "adonisjs-maintenance"
     ],
+    "commands": [
+      "adonisjs-maintenance/build/src/commands/MaintenanceMode"
+    ],
   }
 }
