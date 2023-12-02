@@ -5,11 +5,12 @@
   "main": "build/providers/AdonisMaintenanceProvider.js",
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
-    "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
     "clean": "del-cli build",
     "compile": "npm run clean && tsc && copyfiles instructions.md build",
     "build": "npm run compile",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "np --no-tests --message=\"chore(release): %s\"",
+    "version": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,11 @@
     "copyfiles": "^2.4.1",
     "del-cli": "^5.1.0",
     "mrm": "^4.1.22",
+    "np": "^9.0.0",
     "typescript": "^5.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@adonisjs/core": "^5.9.0"
@@ -68,5 +73,9 @@
       "adonisjs-maintenance/build/src/commands/MaintenanceMode"
     ],
     "types": "adonisjs-maintenance"
+  },
+  "np": {
+    "contents": ".",
+    "anyBranch": false
   }
 }
