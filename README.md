@@ -7,7 +7,6 @@ This NPM package allows you to integrate a maintenance mode for your AdonisJS ap
 
 ## Installation
 
-
 Install
 > npm i adonisjs-maintenance
 
@@ -35,6 +34,8 @@ Available flags:
   --message string  Custom message for maintenance mode
 ```
 
+When maintenance mode is enabled, **all** requests to the application will have a 503 status (api, web, ...)
+
 ### Optional: custom error views
 
 This package throws an exception to show a 503 status. Which means you can use the [HTTP error handling](https://docs.adonisjs.com/guides/exception-handling#handling-exceptions-globally) that AdonisJS provides.
@@ -57,6 +58,15 @@ protected statusPages = {
     '503': 'errors/maintenance',
     //..
 }
+```
+
+The custom message can be shown in the view like so:
+
+```edge
+@if(error !== undefined)
+    <h1>{{ error.message }}</h1>
+@end
+<p> It's a 500 </p>
 ```
 
 [npm-image]: https://img.shields.io/npm/v/adonisjs-maintenance.svg?style=for-the-badge&logo=npm
