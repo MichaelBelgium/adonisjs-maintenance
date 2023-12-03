@@ -68,7 +68,7 @@
       "adonisjs-maintenance"
     ],
     "commands": [
-      "adonisjs-maintenance/build/src/commands/MaintenanceMode"
+      "adonisjs-maintenance/build/src/Commands/MaintenanceMode"
     ],
     "types": "adonisjs-maintenance"
   },
