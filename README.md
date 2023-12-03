@@ -8,6 +8,21 @@ This NPM package allows you to integrate a maintenance mode for your AdonisJS ap
 ## Installation
 
 
+Install
+> npm i adonisjs-maintenance
+
+Configure:
+> node ace configure adonisjs-maintenance
+
+Add middleware to `start/kernel.ts`
+
+```ts
+Server.middleware.register([
+    //...
+    () => import('@ioc:Adonis/Addons/MaintenanceMode')
+])
+```
+
 ## Usage
 
 ### Toggle maintenance mode
