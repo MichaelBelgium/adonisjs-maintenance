@@ -34,7 +34,8 @@ Available flags:
   --message string  Custom message for maintenance mode
 ```
 
-When maintenance mode is enabled, **all** requests to the application will have a 503 status (api, web, ...)
+* The secret can be passed via a GET parameter named 'secret' (`localhost:3333/?secret=mysecret`) or the header `X-Maintenance-Secret`
+* When maintenance mode is enabled, **all** requests to the application will have a 503 status (api, web, ...)
 
 ### Optional: custom error views
 
@@ -66,7 +67,7 @@ The custom message can be shown in the view like so:
 @if(error !== undefined)
     <h1>{{ error.message }}</h1>
 @end
-<p> It's a 500 </p>
+<p>Maintenance mode activated, please come back later.</p>
 ```
 
 [npm-image]: https://img.shields.io/npm/v/adonisjs-maintenance.svg?style=for-the-badge&logo=npm
