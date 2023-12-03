@@ -1,6 +1,6 @@
 {
   "name": "adonisjs-maintenance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A maintenance mode for the AdonisJS framework",
   "main": "build/providers/AdonisMaintenanceProvider.js",
   "scripts": {
