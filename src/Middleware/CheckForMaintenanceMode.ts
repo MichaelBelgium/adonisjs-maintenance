@@ -16,9 +16,15 @@ export class CheckForMaintenanceMode
             const maintenanceData = JSON.parse(fs.readFileSync(this.path, 'utf-8'));
 
             const secret = request.input('secret') || request.header('X-Maintenance-Secret');
-            
-            if (secret && secret === maintenanceData.secret)
+
+            if (maintenanceData.allowedIps.includes(request.ip()) || (secret !== undefined && secret === maintenanceData.secret))
             {
+                if (!maintenanceData.allowedIps.includes(request.ip()))
+                {
+                    maintenanceData.allowedIps.push(request.ip());
+                    fs.writeFileSync(this.path, JSON.stringify(maintenanceData));
+                }
+
                 await next();
                 return;
             }

@@ -49,7 +49,8 @@ export default class MaintenanceMode extends BaseCommand {
             JSON.stringify({ 
                 time: DateTime.now(),
                 secret: this.secret,
-                message: this.message || 'The site is under maintenance.'
+                message: this.message || 'The site is under maintenance.',
+                allowedIps: []
             }), 
             'utf-8'
         );
