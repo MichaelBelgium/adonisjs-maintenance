@@ -4,9 +4,8 @@
   "description": "A maintenance mode for the AdonisJS framework",
   "main": "build/providers/AdonisMaintenanceProvider.js",
   "scripts": {
-    "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "clean": "del-cli build",
-    "compile": "npm run clean && tsc && copyfiles instructions.md build",
+    "compile": "npm run clean && tsc",
     "build": "npm run compile",
     "prepublishOnly": "npm run build",
     "release": "np --no-tests --message=\"chore(release): %s\"",
@@ -30,12 +29,10 @@
   "homepage": "https://github.com/MichaelBelgium/adonisjs-maintenance#readme",
   "devDependencies": {
     "@adonisjs/core": "^5.9.0",
-    "@adonisjs/mrm-preset": "^5.0.3",
     "@adonisjs/require-ts": "^2.0.13",
     "@types/node": "^20.10.1",
     "copyfiles": "^2.4.1",
     "del-cli": "^5.1.0",
-    "mrm": "^4.1.22",
     "np": "^9.0.0",
     "typescript": "^5.3.2"
   },
@@ -45,33 +42,10 @@
   "peerDependencies": {
     "@adonisjs/core": "^5.9.0"
   },
-  "mrmConfig": {
-    "core": false,
-    "license": "MIT",
-    "services": [],
-    "minNodeVersion": "20.9.0",
-    "probotApps": [
-      "stale"
-    ],
-    "runGhActionsOnWindows": false
-  },
-  "types": "build/adonis-typings/index.d.ts",
   "files": [
-    "build/instructions.md",
-    "build/adonis-typings",
     "build/src",
     "build/providers"
   ],
-  "adonisjs": {
-    "instructionsMd": "build/instructions.md",
-    "providers": [
-      "adonisjs-maintenance"
-    ],
-    "commands": [
-      "adonisjs-maintenance/build/src/Commands/MaintenanceMode"
-    ],
-    "types": "adonisjs-maintenance"
-  },
   "np": {
     "contents": ".",
     "anyBranch": false
