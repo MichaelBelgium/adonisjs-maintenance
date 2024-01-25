@@ -1,6 +1,6 @@
-import { BaseCommand, flags } from '@adonisjs/core/build/standalone';
+import { BaseCommand, flags } from '@adonisjs/core/ace'
+import { CommandOptions } from '@adonisjs/core/types/ace'
 import { writeFileSync, existsSync, unlinkSync } from 'fs'
-import { DateTime } from 'luxon';
 
 export default class MaintenanceMode extends BaseCommand {
     /**
@@ -13,16 +13,15 @@ export default class MaintenanceMode extends BaseCommand {
      */
     public static description = 'Toggle the application maintenance mode';
 
-    public static settings = {
-        loadApp: false,
-        stayAlive: false,
+    static options: CommandOptions = {
+        startApp: false,
     }
 
     @flags.string({ description: 'Secret key to bypass maintenance mode' })
-    public secret: string;
+    declare secret: string;
 
     @flags.string({ description: 'Custom message for maintenance mode' })
-    public message: string;
+    declare message: string;
 
     public async run() 
     {
@@ -34,7 +33,7 @@ export default class MaintenanceMode extends BaseCommand {
 
     private getMaintenanceFilePath() 
     {
-        return this.application.tmpPath('maintenance.json');
+        return this.app.tmpPath('maintenance.json');
     }
 
     private isMaintenanceEnabled()
@@ -47,7 +46,7 @@ export default class MaintenanceMode extends BaseCommand {
         writeFileSync(
             this.getMaintenanceFilePath(),
             JSON.stringify({ 
-                time: DateTime.now(),
+                time: new Date(),
                 secret: this.secret,
                 message: this.message || 'The site is under maintenance.',
                 allowedIps: []

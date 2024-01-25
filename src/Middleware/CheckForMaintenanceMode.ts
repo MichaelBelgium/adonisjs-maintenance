@@ -1,15 +1,15 @@
 import fs from 'fs';
-import { Exception } from '@adonisjs/core/build/standalone';
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import { Exception } from '@poppinss/utils'
+import { HttpContext } from '@adonisjs/core/http'
 
-export class CheckForMaintenanceMode 
+export default class CheckForMaintenanceMode 
 {
     constructor (private path: string) 
     {
 
     }
 
-    public async handle({ request }: HttpContextContract, next: () => Promise<void>)
+    public async handle({ request }: HttpContext, next: () => Promise<void>)
     {
         if (fs.existsSync(this.path))
         {
@@ -26,10 +26,11 @@ export class CheckForMaintenanceMode
                 }
 
                 await next();
-                return;
             }
 
-            throw new Exception(maintenanceData.message, 503);
+            throw new Exception(maintenanceData.message, {
+                status: 503
+            });
         }
 
         await next();
