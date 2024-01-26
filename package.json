@@ -2,7 +2,7 @@
   "name": "adonisjs-maintenance",
   "version": "1.0.3",
   "description": "A maintenance mode for the AdonisJS framework",
-  "main": "build/providers/AdonisMaintenanceProvider.js",
+  "main": "build/providers/MaintenanceProvider.js",
   "scripts": {
     "clean": "del-cli build",
     "compile": "npm run clean && tsc",
@@ -46,8 +46,7 @@
     "@adonisjs/core": "^6.2.0"
   },
   "files": [
-    "build/src",
-    "build/providers"
+    "build"
   ],
   "np": {
     "message": "chore(release): %s",
