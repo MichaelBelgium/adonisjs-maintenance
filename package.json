@@ -8,7 +8,7 @@
     "compile": "npm run clean && tsc",
     "build": "npm run compile",
     "postbuild": "npm run index:commands",
-    "release": "np",
+    "release": "np --no-tests",
     "version": "npm run build",
     "index:commands": "adonis-kit index build/commands"
   },
@@ -51,8 +51,7 @@
   "np": {
     "message": "chore(release): %s",
     "contents": ".",
-    "anyBranch": false,
-    "tests": false
+    "anyBranch": false
   },
   "type": "module",
   "exports": {
