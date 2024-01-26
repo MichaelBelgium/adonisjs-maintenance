@@ -13,14 +13,13 @@ Install
 Configure:
 > node ace configure adonisjs-maintenance
 
-Add middleware to `start/kernel.ts`
+This will add
 
-```ts
-Server.middleware.register([
-    //...
-    () => import('@ioc:Adonis/Addons/MaintenanceMode')
-])
-```
+* `adonisjs-maintenance/CheckForMaintenanceMode` as router middleware
+* `adonisjs-maintenance/commands` to commands
+* `adonisjs-maintenance/MaintenanceProvider` as extra service provider
+
+to your application
 
 ## Usage
 
@@ -39,35 +38,43 @@ Available flags:
 
 ### Optional: custom error views
 
-This package throws an exception to show a 503 status. Which means you can use the [HTTP error handling](https://docs.adonisjs.com/guides/exception-handling#handling-exceptions-globally) that AdonisJS provides.
+This package throws an exception to show a 503 status. Which means you can use the [HTTP error handling](https://docs.adonisjs.com/guides/exception-handling#status-pages) that AdonisJS provides.
 
-You can check out this behaviour in the file  `app/Exceptions/Handler.ts` of your app.
+You can check out this behaviour in the file  `app/Exceptions/handler.ts` of your app.
 By default it'll show the edge template `errors/server-error`:
 
 ```ts
-protected statusPages = {
+protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
     //...
-    '500..599': 'errors/server-error', 
+
+    '500..599': (error, { view }) => {
+        return view.render('pages/errors/server-error', { error })
+    },
 }
 ```
 
 But optionally you can create a new edge template for only the 503 status like so:
 
 ```ts
-protected statusPages = {
+protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
     //...
-    '503': 'errors/maintenance',
-    //..
+    '503': (error, { view }) => {
+        return view.render('pages/errors/maintenance', { error })
+    },
+    '500..599': (error, { view }) => {
+        return view.render('pages/errors/server-error', { error })
+    },
 }
 ```
 
 The custom message can be shown in the view like so:
 
 ```edge
-@if(error !== undefined)
-    <h1>{{ error.message }}</h1>
-@end
+<h1>{{ error.status }} - Maintenance </h1>
 <p>Maintenance mode activated, please come back later.</p>
+<p>
+    {{ error.message }}
+</p>
 ```
 
 [npm-image]: https://img.shields.io/npm/v/adonisjs-maintenance.svg?style=for-the-badge&logo=npm
