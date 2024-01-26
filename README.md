@@ -38,22 +38,22 @@ Available flags:
 
 ### Optional: custom error views
 
-This package throws an exception to show a 503 status. Which means you can use the [HTTP error handling](https://docs.adonisjs.com/guides/exception-handling#status-pages) that AdonisJS provides.
+This package throws an exception to show a 503 status. Which means you can use [status pages](https://docs.adonisjs.com/guides/exception-handling#status-pages) which AdonisJS provides.
 
-You can check out this behaviour in the file  `app/Exceptions/handler.ts` of your app.
-By default it'll show the edge template `errors/server-error`:
+You can check out this behaviour in the file  `app/exceptions/handler.ts` of your app.
+By default it'll show the edge template `pages/errors/server_error` when a 503 HTTP error occurs:
 
 ```ts
 protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
     //...
 
     '500..599': (error, { view }) => {
-        return view.render('pages/errors/server-error', { error })
+        return view.render('pages/errors/server_error', { error })
     },
-}
+  }
 ```
 
-But optionally you can create a new edge template for only the 503 status like so:
+But you can create a new edge template for only the 503 status like so:
 
 ```ts
 protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
@@ -61,8 +61,8 @@ protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
     '503': (error, { view }) => {
         return view.render('pages/errors/maintenance', { error })
     },
-    '500..599': (error, { view }) => {
-        return view.render('pages/errors/server-error', { error })
+    '504..599': (error, { view }) => {
+        return view.render('pages/errors/server_error', { error })
     },
 }
 ```
