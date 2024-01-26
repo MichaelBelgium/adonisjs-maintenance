@@ -57,7 +57,7 @@
   "type": "module",
   "exports": {
     ".": "./build/index.js",
-    "./commands": "./commands/main.js",
+    "./commands": "./build/commands/main.js",
     "./CheckForMaintenanceMode": "./build/src/Middleware/CheckForMaintenanceMode.js",
     "./MaintenanceProvider": "./build/providers/MaintenanceProvider.js"
   }
