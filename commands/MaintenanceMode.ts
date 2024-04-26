@@ -1,6 +1,6 @@
 import { BaseCommand, flags } from '@adonisjs/core/ace'
 import { CommandOptions } from '@adonisjs/core/types/ace'
-import { writeFileSync, existsSync, unlinkSync } from 'fs'
+import { writeFileSync, existsSync, unlinkSync, mkdirSync } from 'fs'
 
 export default class MaintenanceMode extends BaseCommand {
     /**
@@ -23,15 +23,18 @@ export default class MaintenanceMode extends BaseCommand {
     @flags.string({ description: 'Custom message for maintenance mode' })
     declare message: string;
 
-    public async run() 
+    public async run()
     {
+        if (!existsSync(this.app.tmpPath()))
+            mkdirSync(this.app.tmpPath(), { recursive: true });
+
         if (this.isMaintenanceEnabled())
             this.disableMaintenanceMode();
         else
             this.enableMaintenanceMode();
     }
 
-    private getMaintenanceFilePath() 
+    private getMaintenanceFilePath()
     {
         return this.app.tmpPath('maintenance.json');
     }
@@ -60,7 +63,7 @@ export default class MaintenanceMode extends BaseCommand {
     {
         if (this.isMaintenanceEnabled()) 
         {
-          unlinkSync(this.getMaintenanceFilePath())
+            unlinkSync(this.getMaintenanceFilePath())
         }
         this.logger.success('Maintenance mode disabled');
     }
