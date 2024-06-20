@@ -23,6 +23,9 @@ export default class MaintenanceMode extends BaseCommand {
     @flags.string({ description: 'Custom message for maintenance mode' })
     declare message: string;
 
+    @flags.array({ description: 'IP to whitelist' })
+    declare allow_ip: string[];
+
     public async run()
     {
         if (!existsSync(this.app.tmpPath()))
@@ -52,7 +55,7 @@ export default class MaintenanceMode extends BaseCommand {
                 time: new Date(),
                 secret: this.secret,
                 message: this.message || 'The site is under maintenance.',
-                allowedIps: []
+                allowedIps: this.allow_ip || [],
             }), 
             'utf-8'
         );

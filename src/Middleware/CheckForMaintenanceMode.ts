@@ -26,6 +26,7 @@ export default class CheckForMaintenanceMode
                 }
 
                 await next();
+                return;
             }
 
             throw new Exception(maintenanceData.message, {
