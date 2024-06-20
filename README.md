@@ -7,11 +7,10 @@ This NPM package allows you to integrate a maintenance mode for your AdonisJS ap
 
 ## Installation
 
-Install
-> npm i adonisjs-maintenance
+Install & configure
+> node ace add adonisjs-maintenance
 
-Configure:
-> node ace configure adonisjs-maintenance
+(Same as `npm i adonisjs-maintenance` and `node ace configure adonisjs-maintenance`)
 
 This will add
 
@@ -29,12 +28,20 @@ Execute the command `node ace maintenance`
 
 Available flags:
 ```
-  --secret string   Secret key to bypass maintenance mode
-  --message string  Custom message for maintenance mode
+  --secret      string      Secret key to bypass maintenance mode
+  --message     string      Custom message for maintenance mode
+  --allow-ip    array       Add an ip to the whitelist
 ```
 
 * The secret can be passed via a GET parameter named 'secret' (`localhost:3333/?secret=mysecret`) or the header `X-Maintenance-Secret`
 * When maintenance mode is enabled, **all** requests to the application will have a 503 status (api, web, ...)
+* Passing the correct secret adds your IP automaticly to the whitelist
+
+#### Examples
+
+* `node ace maintenance --message 'Oh noes! Please come back later.'`
+* `node ace maintenance --secret letmein --message 'Please come back later or enter the secret password to enter ;)'`
+* `node ace maintenance --message 'Maintenance mode is enabled.' --allow-ip 127.0.0.1 --allow-ip 8.8.8.8 --allow-ip 196.128.0.1`
 
 ### Optional: custom error views
 
