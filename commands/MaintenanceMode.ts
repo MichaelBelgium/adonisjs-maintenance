@@ -6,12 +6,12 @@ export default class MaintenanceMode extends BaseCommand {
     /**
      * Command name is used to run the command
      */
-    public static commandName = 'maintenance';
+    static commandName = 'maintenance';
 
     /**
      * Command description is displayed in the "help" output
      */
-    public static description = 'Toggle the application maintenance mode';
+    static description = 'Toggle the application maintenance mode';
 
     static options: CommandOptions = {
         startApp: false,
@@ -26,7 +26,7 @@ export default class MaintenanceMode extends BaseCommand {
     @flags.array({ description: 'IP to whitelist' })
     declare allow_ip: string[];
 
-    public async run()
+    async run()
     {
         if (!existsSync(this.app.tmpPath()))
             mkdirSync(this.app.tmpPath(), { recursive: true });

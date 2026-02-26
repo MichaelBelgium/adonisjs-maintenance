@@ -1,6 +1,7 @@
 import fs from 'fs';
-import { Exception } from '@poppinss/utils'
-import { HttpContext } from '@adonisjs/core/http'
+import type { HttpContext } from '@adonisjs/core/http'
+import type { NextFn } from '@adonisjs/core/types/http'
+import { errors } from '@adonisjs/core'
 
 export default class CheckForMaintenanceMode 
 {
@@ -9,7 +10,7 @@ export default class CheckForMaintenanceMode
 
     }
 
-    public async handle({ request }: HttpContext, next: () => Promise<void>)
+    async handle({ request }: HttpContext, next: NextFn)
     {
         if (fs.existsSync(this.path))
         {
@@ -29,8 +30,8 @@ export default class CheckForMaintenanceMode
                 return;
             }
 
-            throw new Exception(maintenanceData.message, {
-                status: 503
+            throw new errors.E_HTTP_EXCEPTION(maintenanceData.message, {
+                status: 503,
             });
         }
 

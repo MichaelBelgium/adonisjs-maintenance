@@ -2,7 +2,7 @@
   "name": "adonisjs-maintenance",
   "version": "2.0.3",
   "description": "A maintenance mode for the AdonisJS framework",
-  "main": "build/providers/MaintenanceProvider.js",
+  "main": "build/index.js",
   "scripts": {
     "clean": "del-cli build",
     "compile": "npm run clean && tsc",

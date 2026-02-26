@@ -1,13 +1,13 @@
 import type { ApplicationService } from '@adonisjs/core/types'
-import CheckForMaintenanceMode from '../src/Middleware/CheckForMaintenanceMode.js'
+import CheckForMaintenanceMode from '../src/Middleware/CheckForMaintenanceMode.ts'
 
 export default class MaintenanceProvider
 {
     constructor(protected app: ApplicationService) {}
 
-    public register()
+    async register()
     {
-        this.app.container.singleton(CheckForMaintenanceMode, () => {
+        this.app.container.bind(CheckForMaintenanceMode, async () => {
             return new CheckForMaintenanceMode(this.app.tmpPath('maintenance.json'));
         });
     }

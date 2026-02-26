@@ -12,9 +12,9 @@
 |
 */
 
-import ConfigureCommand from '@adonisjs/core/commands/configure'
+import type Configure from '@adonisjs/core/commands/configure'
 
-export async function configure(command: ConfigureCommand) 
+export async function configure(command: Configure) 
 {
     const codemods = await command.createCodemods();
 
