@@ -45,7 +45,7 @@ Available flags:
 
 ### Optional: custom error views
 
-This package throws an exception to show a 503 status. Which means you can use [status pages](https://docs.adonisjs.com/guides/exception-handling#status-pages) which AdonisJS provides.
+This package throws an exception to show a 503 status. Which means you can use [status pages](https://docs.adonisjs.com/guides/basics/exception-handling#the-global-exception-handler) which AdonisJS provides.
 
 You can check out this behaviour in the file  `app/exceptions/handler.ts` of your app.
 By default it'll show the edge template `pages/errors/server_error` when a 503 HTTP error occurs:
@@ -77,7 +77,7 @@ protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
 The custom message can be shown in the view like so:
 
 ```edge
-<h1>{{ error.status }} - Maintenance </h1>
+<h1>{{ error.status }} {{ error.code }} - Maintenance </h1>
 <p>Maintenance mode activated, please come back later.</p>
 <p>
     {{ error.message }}
