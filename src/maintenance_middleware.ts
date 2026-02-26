@@ -3,7 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
 import { errors } from '@adonisjs/core'
 
-export default class CheckForMaintenanceMode 
+export default class MaintenanceMiddleware
 {
     constructor (private path: string) 
     {

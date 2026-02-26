@@ -56,7 +56,7 @@
   "exports": {
     ".": "./build/index.js",
     "./commands": "./build/commands/main.js",
-    "./CheckForMaintenanceMode": "./build/src/Middleware/CheckForMaintenanceMode.js",
-    "./MaintenanceProvider": "./build/providers/MaintenanceProvider.js"
+    "./maintenance_middleware": "./build/src/maintenance_middleware.js",
+    "./maintenance_provider": "./build/providers/maintenance_provider.js"
   }
 }

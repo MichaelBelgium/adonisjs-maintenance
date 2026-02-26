@@ -19,11 +19,11 @@ export async function configure(command: Configure)
     const codemods = await command.createCodemods();
 
     await codemods.updateRcFile((rcFile: any) => {
-        rcFile.addProvider('adonisjs-maintenance/MaintenanceProvider')
+        rcFile.addProvider('adonisjs-maintenance/maintenance_provider');
         rcFile.addCommand('adonisjs-maintenance/commands')
     });
 
     await codemods.registerMiddleware('router', [
-        {path: 'adonisjs-maintenance/CheckForMaintenanceMode'}
+        {path: 'adonisjs-maintenance/maintenance_middleware'}
     ]);
 }

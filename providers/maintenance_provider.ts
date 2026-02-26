@@ -1,5 +1,5 @@
 import type { ApplicationService } from '@adonisjs/core/types'
-import CheckForMaintenanceMode from '../src/Middleware/CheckForMaintenanceMode.ts'
+import CheckForMaintenanceMode from '../src/maintenance_middleware.ts'
 
 export default class MaintenanceProvider
 {

@@ -14,9 +14,9 @@ Install & configure
 
 This will add
 
-* `adonisjs-maintenance/CheckForMaintenanceMode` as router middleware
+* `adonisjs-maintenance/maintenance_middleware` as router middleware
 * `adonisjs-maintenance/commands` to commands
-* `adonisjs-maintenance/MaintenanceProvider` as extra service provider
+* `adonisjs-maintenance/maintenance_provider` as extra service provider
 
 to your application
 
